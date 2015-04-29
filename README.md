@@ -1,1 +1,1 @@
-Buch of C++ and nvidia GPU CUDA tests.
+Bunch of C++ and nvidia GPU CUDA tests.

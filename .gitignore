@@ -1,7 +1,7 @@
 .exe
 
-DevCppTest02\a-z
-DevCppTest02\a-z\*
+.\DevCppTest02\a-z
+.\DevCppTest02\a-z\*
 
-DevCppTest02\0-9
-DevCppTest02\0-9\*
+.\DevCppTest02\0-9
+.\DevCppTest02\0-9\*

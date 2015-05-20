@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <fstream>
 #include <iostream>
 #include <string>
@@ -5,12 +6,42 @@
 
 using namespace std;
 
+bool IsCharDuplication(string s) {   
+	for(int i = 0; i < s.length(); i++) {
+		for (int j = i+1; j < s.length(); j++) {
+			if (s[i] == s[j]) {
+				return true;
+			}
+		}
+	}
+	
+	return false;
+}
+
+int stringHasUniqueElements(string strToCheck) {
+	int hasUniqueElements = 0;
+	
+	if(!IsCharDuplication(strToCheck)) {
+		hasUniqueElements = 1;
+	}
+	
+	return hasUniqueElements;
+}
+
 int main(int argc, char** argv) {
 	ifstream alphabet("1.txt");
 	
 	string alphabetCurrentLine;
 	
-	int iterationToGet = 6;
+	int iterationToGet = 9;
+	
+	/* ***** */
+	
+	int checkUniqueElements = 1;
+	
+	int hasUniqueElements = 0;
+	
+	/* ***** */
 	
 	int numberFileToRead = iterationToGet - 1;
 	
@@ -42,7 +73,21 @@ int main(int argc, char** argv) {
     	while(getline(prevIterFile, prevIterFileCurrentLine)) {
     		cout << alphabetCurrentLine << prevIterFileCurrentLine << endl;
     		
-    		outStream << alphabetCurrentLine << prevIterFileCurrentLine << endl;
+    		if(checkUniqueElements) {
+    			hasUniqueElements = stringHasUniqueElements(alphabetCurrentLine + prevIterFileCurrentLine);
+    			
+    			if(hasUniqueElements) {
+    				cout << "WILL ADD " << alphabetCurrentLine << prevIterFileCurrentLine << endl;
+    				
+    				outStream << alphabetCurrentLine << prevIterFileCurrentLine << endl;
+				}
+				else {
+					cout << "WILL NOT ADD " << alphabetCurrentLine << prevIterFileCurrentLine << endl;
+				}
+			}
+			else {
+				outStream << alphabetCurrentLine << prevIterFileCurrentLine << endl;
+			}
 		}
 		
 		prevIterFile.close();

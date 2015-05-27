@@ -6,10 +6,10 @@
 
 using namespace std;
 
-bool IsCharDuplication(string s) {   
+bool hasDuplicateCharacters(string s) {   
 	for(int i = 0; i < s.length(); i++) {
-		for (int j = i+1; j < s.length(); j++) {
-			if (s[i] == s[j]) {
+		for(int j = i+1; j < s.length(); j++) {
+			if(s[i] == s[j]) {
 				return true;
 			}
 		}
@@ -21,7 +21,7 @@ bool IsCharDuplication(string s) {
 int stringHasUniqueElements(string strToCheck) {
 	int hasUniqueElements = 0;
 	
-	if(!IsCharDuplication(strToCheck)) {
+	if(!hasDuplicateCharacters(strToCheck)) {
 		hasUniqueElements = 1;
 	}
 	
@@ -66,20 +66,20 @@ int main(int argc, char** argv) {
 	/* ***** */
 	
 	ofstream outStream(strNameOfFileToCreate.c_str());
-    
+	
 	/* ***** */
 	
 	while(getline(alphabet, alphabetCurrentLine)) {
-    	while(getline(prevIterFile, prevIterFileCurrentLine)) {
-    		cout << alphabetCurrentLine << prevIterFileCurrentLine << endl;
-    		
-    		if(checkUniqueElements) {
-    			hasUniqueElements = stringHasUniqueElements(alphabetCurrentLine + prevIterFileCurrentLine);
-    			
-    			if(hasUniqueElements) {
-    				cout << "WILL ADD " << alphabetCurrentLine << prevIterFileCurrentLine << endl;
-    				
-    				outStream << alphabetCurrentLine << prevIterFileCurrentLine << endl;
+		while(getline(prevIterFile, prevIterFileCurrentLine)) {
+			cout << alphabetCurrentLine << prevIterFileCurrentLine << endl;
+			
+			if(checkUniqueElements) {
+				hasUniqueElements = stringHasUniqueElements(alphabetCurrentLine + prevIterFileCurrentLine);
+				
+				if(hasUniqueElements) {
+					cout << "WILL ADD " << alphabetCurrentLine << prevIterFileCurrentLine << endl;
+					
+					outStream << alphabetCurrentLine << prevIterFileCurrentLine << endl;
 				}
 				else {
 					cout << "WILL NOT ADD " << alphabetCurrentLine << prevIterFileCurrentLine << endl;
@@ -93,7 +93,7 @@ int main(int argc, char** argv) {
 		prevIterFile.close();
 		prevIterFile.clear();
 		prevIterFile.open(prevIterFileName.c_str());
-    }
+	}
 	
 	outStream.close();
 	
